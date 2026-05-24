@@ -23,5 +23,30 @@ import orbitaltap.shared.generated.resources.compose_multiplatform
 @Preview
 fun App()
 {
+    MaterialTheme {
+        var gameState = remember { GameState() }
+        var screen by remember { mutableStateOf("menu") }
 
+        when(screen)
+        {
+            "menu" -> MenuScreen(
+                onStartGame = {screen = "game"}
+            )
+            "game" -> GameScreen(
+                gameState = gameState,
+                onGameOver = {screen = "gameover"}
+            )
+            "gameover" -> GameOverScreen(
+                gameState = gameState,
+                onRestart = {
+                    gameState.startGame()
+                    screen = "game"
+                },
+                onMenuClick = {
+                    gameState.resetAll()
+                    screen = "menu"
+                }
+            )
+        }
+    }
 }
