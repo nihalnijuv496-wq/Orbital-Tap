@@ -95,7 +95,7 @@ fun StarMapRenderer(gameState: GameState)
                 }
                 for(position in starPositionsOnScreen)
                 {
-                    drawCircleWithShadow(Color.White, 5.0f, position)
+                    drawStar(Color.White, 5.0f, position)
                 }
                 for (line in constellation.lines)
                 {
@@ -117,7 +117,7 @@ fun StarMapRenderer(gameState: GameState)
                 val screenY = screenPosition.y
                 if(screenX in 0f..size.width && screenY in 0f..size.height)
                 {
-                    drawCircleWithShadow(
+                    drawStar(
                         color = backgroundStar.color,
                         radius = backgroundStar.radius,
                         center = screenPosition
@@ -129,13 +129,13 @@ fun StarMapRenderer(gameState: GameState)
 }
 
 
-fun DrawScope.drawCircleWithShadow(
+fun DrawScope.drawStar(
     color: Color, radius: Float, center: Offset
 )
 {
     drawCircle(
         color = color.copy(alpha = ((radius/70.0).toFloat())),
-        radius = radius + 5.dp.toPx(),
+        radius = radius + 4.dp.toPx(),
         center = center
     )
     drawCircle(
