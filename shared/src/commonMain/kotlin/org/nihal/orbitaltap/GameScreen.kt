@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,6 +25,8 @@ import orbitaltap.shared.generated.resources.Comfortaa_Light
 import orbitaltap.shared.generated.resources.Comfortaa_Medium
 import orbitaltap.shared.generated.resources.Res
 import org.jetbrains.compose.resources.Font
+import org.nihal.orbitaltap.Utils.Timer.StartTimer
+import org.nihal.orbitaltap.Utils.Timer.Timer
 
 @Composable
 fun GameScreen(gameState: GameState, onGameOver: () -> Unit, onExit: () -> Unit) {
@@ -68,9 +71,15 @@ fun GameScreen(gameState: GameState, onGameOver: () -> Unit, onExit: () -> Unit)
                 fontWeight = FontWeight.Light,
                 color = Color.White
             )
+
+
+
             //TODO("implement the timer circle")
+            val timer = remember { Timer(30000L) }
+            StartTimer(timer)
+
             Text(
-                text = "Time: \n${gameState.score}",  //temporarily showing score instead of a timer
+                text = "Time: \n${timer.remainingTimeSeconds.toInt()}",  //temporarily showing score instead of a timer
                 textAlign = TextAlign.Center,
                 fontFamily = ComfortaaFamily,
                 fontSize = 20.sp,
