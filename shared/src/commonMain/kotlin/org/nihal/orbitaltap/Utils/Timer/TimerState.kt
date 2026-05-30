@@ -3,17 +3,23 @@ package org.nihal.orbitaltap.Utils.Timer
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import kotlinx.coroutines.delay
+import org.nihal.orbitaltap.GameState
 import kotlin.time.Clock
 
 @Composable
-fun StartTimer(timer: Timer, onGameOver: () -> Unit) {
-    timer.startTimer()
-    LaunchedEffect(timer.isRunning) {
-            val startTime = Clock.System.now().toEpochMilliseconds() - timer.elapsedTimeMillis
-            while (timer.isRunning) {
-                timer.elapsedTimeMillis = Clock.System.now().toEpochMilliseconds() - startTime
-                if(timer.remainingTimeSeconds <= 0) onGameOver()
-                delay(100)
+fun StartTimer(gameState: GameState) {
+
+    LaunchedEffect(gameState.timer.isRunning) {
+        if(!gameState.timer.isRunning) return@LaunchedEffect
+        val startTime = Clock.System.now().toEpochMilliseconds() - gameState.timer.elapsedTimeMillis
+        while (gameState.timer.isRunning) {
+            gameState.timer.elapsedTimeMillis = Clock.System.now().toEpochMilliseconds() - startTime
+            if(gameState.timer.remainingTimeSeconds <= 0)
+            {
+                gameState.isGameOver = true
+                gameState.timer.pauseTimer()
+            }
+            delay(100)
         }
     }
 }

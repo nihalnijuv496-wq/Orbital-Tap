@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.geometry.Offset
 import org.nihal.orbitaltap.Utils.Timer.Timer
-import kotlin.math.*
+import kotlin.math.sqrt
 
 class GameState {
 
@@ -19,7 +19,6 @@ class GameState {
     var score by mutableStateOf(0)
         private set
     var isGameOver by mutableStateOf(false)
-        private set
     var mapOffset by mutableStateOf(Offset(0f, 0f))
         private set
 
@@ -35,6 +34,7 @@ class GameState {
     fun startGame()
     {
         resetAll()
+        timer.startTimer()
         getNewQuestion()
     }
 
@@ -64,9 +64,7 @@ class GameState {
 
     fun addToTime(timeMillis: Double)
     {
-        timer.resetTimer(timer.elapsedTimeMillis - timeMillis)
-        println(timer.remainingTimeSeconds.toLong())
-        println(timer.remainingTimeSeconds.toLong() + timeMillis)
+        timer.countUntilMillis += timeMillis
     }
 
 
@@ -76,6 +74,7 @@ class GameState {
         score = 0
         isGameOver = false
         mapOffset = Offset(0f,0f)
+        timer.resetTimer(15000.0)
     }
 
     fun onDrag(delta: Offset, canvasSize: Pair<Int, Int>)

@@ -1,17 +1,17 @@
 package org.nihal.orbitaltap
 
-import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -26,7 +26,7 @@ data class BackgroundStar(
     val radius: Float
 )
 @Composable
-fun StarMapRenderer(gameState: GameState, onGameOver: () -> Unit)
+fun StarMapRenderer(gameState: GameState)
 {
     val backgroundStars = remember {
         List(1000)
@@ -87,7 +87,6 @@ fun StarMapRenderer(gameState: GameState, onGameOver: () -> Unit)
                     detectTapGestures (
                         onTap = {offset ->
                             gameState.checkClick(offset.x, offset.y)
-                            if(gameState.isGameOver) onGameOver()
                         }
                     )
                 }

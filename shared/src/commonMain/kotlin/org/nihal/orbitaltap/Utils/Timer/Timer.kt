@@ -1,7 +1,6 @@
 package org.nihal.orbitaltap.Utils.Timer
 
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import kotlin.math.max
@@ -14,7 +13,7 @@ class Timer(var countUntilMillis: Double) {
     fun startTimer() { isRunning = true }
     fun pauseTimer() { isRunning = false }
     fun resetTimer(newCount: Double) {
-        isRunning = false
+        pauseTimer()
         elapsedTimeMillis = 0.0
         countUntilMillis = newCount
     }

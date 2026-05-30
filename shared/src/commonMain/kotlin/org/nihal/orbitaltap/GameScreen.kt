@@ -25,11 +25,10 @@ import orbitaltap.shared.generated.resources.Comfortaa_Medium
 import orbitaltap.shared.generated.resources.Res
 import org.jetbrains.compose.resources.Font
 import org.nihal.orbitaltap.Utils.Timer.StartTimer
-import org.nihal.orbitaltap.Utils.Timer.Timer
 
 @Composable
-fun GameScreen(gameState: GameState, onGameOver: () -> Unit, onExit: () -> Unit) {
-
+fun GameScreen(gameState: GameState, onExit: () -> Unit) {
+    //@TODO{ Should put the family in a single folder }
     val ComfortaaFamily = FontFamily(
         Font(Res.font.Comfortaa_Bold, FontWeight.Bold),
         Font(Res.font.Comfortaa_Light, FontWeight.Light),
@@ -53,7 +52,7 @@ fun GameScreen(gameState: GameState, onGameOver: () -> Unit, onExit: () -> Unit)
             color = Color.White
         )
 
-        StarMapRenderer(gameState, onGameOver)
+        StarMapRenderer(gameState)
 
         Row (
             modifier = Modifier
@@ -75,7 +74,7 @@ fun GameScreen(gameState: GameState, onGameOver: () -> Unit, onExit: () -> Unit)
 
             //TODO("implement the timer circle")
 
-            StartTimer(gameState.timer, onGameOver)
+            StartTimer(gameState)
 
             Text(
                 text = "Time: \n${gameState.timer.remainingTimeSeconds.toInt()}",
