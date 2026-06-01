@@ -1,6 +1,7 @@
 package org.nihal.orbitaltap
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -13,11 +14,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.dropShadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 
 data class BackgroundStar(
@@ -63,14 +67,24 @@ fun StarMapRenderer(gameState: GameState)
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(fraction = 0.60f)
-            .border(width = 2.dp, color = Color.White, shape = RoundedCornerShape(10.dp))
+            .fillMaxHeight(fraction = 0.70f)
+            .border(width = 2.dp, color = Color(174,226,255), shape = RoundedCornerShape(10.dp))
+            .dropShadow(
+                shape = RoundedCornerShape(10.dp),
+                shadow = Shadow(
+                    color = Color(174, 226, 255).copy(0.4f),
+                    offset = DpOffset(0.dp, 0.dp),
+                    radius = 10.dp,
+                    spread = 2.dp,
+                )
+            )
             .clip(RoundedCornerShape(10.dp))
     )
     {
         Canvas(
             modifier = Modifier
                 .fillMaxSize()
+                .background(color = Color(3, 10, 22))
                 .onGloballyPositioned{
                     coordinates -> gameState.updateCanvasSize(
                         coordinates.size.width.toFloat(), coordinates.size.height.toFloat()

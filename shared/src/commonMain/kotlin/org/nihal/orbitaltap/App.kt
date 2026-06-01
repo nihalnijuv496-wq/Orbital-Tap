@@ -28,15 +28,12 @@ fun App()
             )
             "game" -> GameScreen(
                 gameState = gameState,
-                onExit = {
-                    gameState.resetAll()
-                    screen = "menu"
+                onGameOver = {
+                    screen = "gameOverScreen"
                 }
             )
-        }
 
-        if(gameState.isGameOver)
-            GameOverScreen(
+            "gameOverScreen" -> GameOverScreen(
                 gameState = gameState,
                 onRestart = {
                     gameState.startGame()
@@ -47,6 +44,8 @@ fun App()
                     screen = "menu"
                 }
             )
+        }
+
 
     }
 }

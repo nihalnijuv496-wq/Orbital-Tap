@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -46,7 +47,8 @@ fun GameOverScreen(gameState: GameState, onRestart: () -> Unit, onMenuClick: () 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color(3, 10, 22).copy(0.7f)),
+            .background(color = Color(3, 10, 22).copy(0.7f))
+            .padding(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     )
@@ -78,10 +80,11 @@ fun GameOverScreen(gameState: GameState, onRestart: () -> Unit, onMenuClick: () 
         {
             Box(
                 modifier = Modifier
-                    .fillMaxWidth(fraction = 0.3f)
                     .fillMaxHeight(fraction = 0.15f)
+                    .weight(1f)
                     .border(width = 2.dp, color = Color.White, shape = RoundedCornerShape(10.dp))
-                    .clip(RoundedCornerShape(10.dp))
+                    .clip(RoundedCornerShape(10.dp)),
+                contentAlignment = Alignment.Center
             )
             {
                 Text(
@@ -99,10 +102,11 @@ fun GameOverScreen(gameState: GameState, onRestart: () -> Unit, onMenuClick: () 
 
             Box(
                 modifier = Modifier
-                    .fillMaxWidth(fraction = 0.3f)
                     .fillMaxHeight(fraction = 0.15f)
-                    .border(width = 2.dp, color = Color.White, shape = RoundedCornerShape(10.dp))
-                    .clip(RoundedCornerShape(10.dp))
+                    .weight(1f)                    .border(width = 2.dp, color = Color.White, shape = RoundedCornerShape(10.dp))
+                    .clip(RoundedCornerShape(10.dp)),
+                contentAlignment = Alignment.Center
+
             )
             {
 
@@ -130,7 +134,7 @@ fun GameOverScreen(gameState: GameState, onRestart: () -> Unit, onMenuClick: () 
             Button(
                 onClick = onMenuClick,
                 modifier = Modifier
-                    .width(130.dp),
+                    .weight(1f),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.Transparent,
                     contentColor = Color.White
@@ -156,7 +160,7 @@ fun GameOverScreen(gameState: GameState, onRestart: () -> Unit, onMenuClick: () 
             Button(
                 onClick = onRestart,
                 modifier = Modifier
-                    .width(130.dp),
+                    .weight(1f),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.Transparent,
                     contentColor = Color.White
