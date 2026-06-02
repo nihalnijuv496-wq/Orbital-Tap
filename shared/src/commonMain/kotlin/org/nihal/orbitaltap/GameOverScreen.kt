@@ -22,11 +22,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.dropShadow
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import orbitaltap.shared.generated.resources.Comfortaa_Bold
@@ -34,6 +39,7 @@ import orbitaltap.shared.generated.resources.Comfortaa_Light
 import orbitaltap.shared.generated.resources.Comfortaa_Medium
 import orbitaltap.shared.generated.resources.Res
 import org.jetbrains.compose.resources.Font
+import androidx.compose.ui.graphics.shadow.Shadow as BoxShadow
 
 @Composable
 fun GameOverScreen(gameState: GameState, onRestart: () -> Unit, onMenuClick: () -> Unit) {
@@ -47,10 +53,11 @@ fun GameOverScreen(gameState: GameState, onRestart: () -> Unit, onMenuClick: () 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color(3, 10, 22).copy(0.7f))
-            .padding(20.dp),
+            .background(color = Color(3, 10, 22))
+            .padding(20.dp)
+            .padding(20.dp, 40.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.SpaceBetween
     )
     {
         Text(
@@ -58,127 +65,222 @@ fun GameOverScreen(gameState: GameState, onRestart: () -> Unit, onMenuClick: () 
             fontFamily = ComfortaaFamily,
             fontSize = 20.sp,
             fontWeight = FontWeight.Light,
-            color = Color.White
+            color = Color(174,226,255),
+            style = TextStyle(
+                shadow = Shadow(
+                    color = Color(174, 226, 255),
+                    offset = Offset(x = 0f, y = 0f),
+                    blurRadius = 8f
+                )
+            )
         )
 
         Spacer(Modifier.height(10.dp))
 
-        Text(
-            text = "Time Up",
-            fontFamily = ComfortaaFamily,
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Light,
-            color = Color.White
-        )
+        Column (
+            Modifier
+                .fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
         )
         {
-            Box(
-                modifier = Modifier
-                    .fillMaxHeight(fraction = 0.15f)
-                    .weight(1f)
-                    .border(width = 2.dp, color = Color.White, shape = RoundedCornerShape(10.dp))
-                    .clip(RoundedCornerShape(10.dp)),
-                contentAlignment = Alignment.Center
-            )
-            {
-                Text(
-                    text = "Current Score:\n${gameState.score}",
-                    fontFamily = ComfortaaFamily,
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Light,
-                    color = Color.White
-                )
-            }
-
-
-            Spacer(modifier = Modifier.width(2.dp))
-
-
-            Box(
-                modifier = Modifier
-                    .fillMaxHeight(fraction = 0.15f)
-                    .weight(1f)                    .border(width = 2.dp, color = Color.White, shape = RoundedCornerShape(10.dp))
-                    .clip(RoundedCornerShape(10.dp)),
-                contentAlignment = Alignment.Center
-
-            )
-            {
-
-                Text(
-                    text = "High Score:\n${gameState.score}",   //@TODO{get high score}
-                    fontFamily = ComfortaaFamily,
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Light,
-                    color = Color.White
-                )
-            }
-
-
-
-
-        }
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
-        )
-        {
-            Button(
-                onClick = onMenuClick,
-                modifier = Modifier
-                    .weight(1f),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Transparent,
-                    contentColor = Color.White
-                ),
-                border = BorderStroke(width = 2.dp, color = Color.White),
-                shape = RectangleShape
-
-            )
-            {
-                Text(
-                    text = "Exit",
-                    style = TextStyle(
-                        fontFamily = ComfortaaFamily,
-                        fontSize = 17.sp,
-                        fontWeight = FontWeight.Light,
-                        color = Color.White
+            Text(
+                text = "Time Up",
+                fontFamily = ComfortaaFamily,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Light,
+                color = Color(174,226,255),
+                style = TextStyle(
+                    shadow = Shadow(
+                        color = Color(174, 226, 255),
+                        offset = Offset(x = 0f, y = 0f),
+                        blurRadius = 8f
                     )
                 )
-            }
+            )
 
-            Spacer(modifier = Modifier.width(2.dp))
+            Spacer(modifier = Modifier.height(15.dp))
 
-            Button(
-                onClick = onRestart,
+            Row(
                 modifier = Modifier
-                    .weight(1f),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Transparent,
-                    contentColor = Color.White
-                ),
-                border = BorderStroke(width = 2.dp, color = Color.White),
-                shape = RectangleShape
-
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
             )
             {
-                Text(
-                    text = "Restart",
-                    style = TextStyle(
-                        fontFamily = ComfortaaFamily,
-                        fontSize = 17.sp,
-                        fontWeight = FontWeight.Light,
-                        color = Color.White
-                    )
+                Box(
+                    modifier = Modifier
+                        .fillMaxHeight(fraction = 0.15f)
+                        .weight(1f)
+                        .dropShadow(
+                            shape = RoundedCornerShape(10.dp),
+                            shadow = BoxShadow(
+                                color = Color(174, 226, 255).copy(0.4f),
+                                offset = DpOffset(0.dp, 0.dp),
+                                radius = 10.dp,
+                                spread = 2.dp,
+                            )
+                        )
+                        .clip(RoundedCornerShape(10.dp))
+                        .border(
+                            width = 2.dp,
+                            color = Color(174, 226, 255),
+                            shape = RoundedCornerShape(10.dp)),
+                    contentAlignment = Alignment.Center
+
                 )
+                {
+                    Text(
+                        text = "Current Score:\n${gameState.score}",
+                        textAlign = TextAlign.Center,
+                        lineHeight = 25.sp,
+                        fontFamily = ComfortaaFamily,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Light,
+                        color = Color(174,226,255),
+                        style = TextStyle(
+                            shadow = Shadow(
+                                color = Color(174, 226, 255),
+                                offset = Offset(x = 0f, y = 0f),
+                                blurRadius = 8f
+                            )
+                        )
+                    )
+                }
+
+
+                Spacer(modifier = Modifier.width(10.dp))
+
+
+                Box(
+                    modifier = Modifier
+                        .fillMaxHeight(fraction = 0.15f)
+                        .weight(1f)
+                        .dropShadow(
+                            shape = RoundedCornerShape(10.dp),
+                            shadow = BoxShadow(
+                                color = Color(174, 226, 255).copy(0.4f),
+                                offset = DpOffset(0.dp, 0.dp),
+                                radius = 10.dp,
+                                spread = 2.dp,
+                            )
+                        )
+                        .clip(RoundedCornerShape(10.dp))
+                        .border(
+                            width = 2.dp,
+                            color = Color(174, 226, 255),
+                            shape = RoundedCornerShape(10.dp)),
+                    contentAlignment = Alignment.Center
+
+                )
+                {
+
+                    Text(
+                        text = "High Score:\n${gameState.score}",   //@TODO{get high score}
+                        textAlign = TextAlign.Center,
+                        lineHeight = 25.sp,
+                        fontFamily = ComfortaaFamily,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Light,
+                        color = Color(174,226,255),
+                        style = TextStyle(
+                            shadow = Shadow(
+                                color = Color(174, 226, 255),
+                                offset = Offset(x = 0f, y = 0f),
+                                blurRadius = 8f
+                            )
+                        )
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            )
+            {
+                Button(
+                    onClick = onMenuClick,
+                    modifier = Modifier
+                        .weight(1f)
+                        .dropShadow(
+                            shape = RectangleShape,
+                            shadow = BoxShadow(
+                                color = Color(174, 226, 255).copy(0.4f),
+                                offset = DpOffset.Zero,
+                                radius = 10.dp,
+                                spread = 0.dp,
+                            )
+                        ),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(3, 10, 22),
+                        contentColor = Color.White
+                    ),
+                    border = BorderStroke(width = 2.dp, color = Color(174, 226, 255)),
+                    shape = RectangleShape
+
+                )
+                {
+                    Text(
+                        text = "Exit",
+                        style = TextStyle(
+                            fontFamily = ComfortaaFamily,
+                            fontSize = 17.sp,
+                            fontWeight = FontWeight.Light,
+                            color = Color(174,226,255),
+                            shadow = Shadow(
+                                color = Color(174, 226, 255),
+                                offset = Offset(x = 0f, y = 0f),
+                                blurRadius = 8f
+                            )
+                        )
+                    )
+                }
+
+                Spacer(modifier = Modifier.width(10.dp))
+
+                Button(
+                    onClick = onRestart,
+                    modifier = Modifier
+                        .weight(1f)
+                        .dropShadow(
+                            shape = RectangleShape,
+                            shadow = BoxShadow(
+                                color = Color(174, 226, 255).copy(0.4f),
+                                offset = DpOffset.Zero,
+                                radius = 10.dp,
+                                spread = 0.dp,
+                            )
+                        ),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(3, 10, 22),
+                        contentColor = Color.White
+                    ),
+                    border = BorderStroke(width = 2.dp, color = Color(174, 226, 255)),
+                    shape = RectangleShape
+
+                )
+                {
+                    Text(
+                        text = "Restart",
+                        style = TextStyle(
+                            fontFamily = ComfortaaFamily,
+                            fontSize = 17.sp,
+                            fontWeight = FontWeight.Light,
+                            color = Color(174,226,255),
+                            shadow = Shadow(
+                                color = Color(174, 226, 255),
+                                offset = Offset(x = 0f, y = 0f),
+                                blurRadius = 8f
+                            )
+                        )
+                    )
+                }
             }
         }
     }

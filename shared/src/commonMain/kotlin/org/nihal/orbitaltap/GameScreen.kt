@@ -134,7 +134,7 @@ fun GameScreen(gameState: GameState, onGameOver: () -> Unit) {
                 shape = RoundedCornerShape(10.dp),
                 shadow = BoxShadow(
                     color = Color(174, 226, 255).copy(0.4f),
-                    offset = DpOffset(0.dp, 0.dp),
+                    offset = DpOffset.Zero,
                     radius = 10.dp,
                     spread = 2.dp,
                 )

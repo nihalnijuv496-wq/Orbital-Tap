@@ -15,6 +15,6 @@ class Timer(var countUntilMillis: Double) {
     fun resetTimer(newCount: Double) {
         pauseTimer()
         elapsedTimeMillis = 0.0
-        countUntilMillis = 1.0
+        countUntilMillis = newCount
     }
 }
