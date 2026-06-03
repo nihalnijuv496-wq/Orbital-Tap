@@ -104,7 +104,6 @@ fun GameScreen(gameState: GameState, onGameOver: () -> Unit) {
 
 
             Spacer(Modifier.width(50.dp))
-            //TODO("implement the timer circle")
 
             StartTimer(gameState, onGameOver)
 

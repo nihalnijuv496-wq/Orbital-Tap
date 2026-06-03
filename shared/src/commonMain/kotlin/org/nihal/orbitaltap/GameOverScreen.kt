@@ -44,12 +44,15 @@ import androidx.compose.ui.graphics.shadow.Shadow as BoxShadow
 @Composable
 fun GameOverScreen(gameState: GameState, onRestart: () -> Unit, onMenuClick: () -> Unit) {
 
+    setHighScore(gameState.score)
+
     //@TODO{ Should put the family in a single folder }
     val ComfortaaFamily = FontFamily(
         Font(Res.font.Comfortaa_Bold, FontWeight.Bold),
         Font(Res.font.Comfortaa_Light, FontWeight.Light),
         Font(Res.font.Comfortaa_Medium, FontWeight.Medium)
     )
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -177,7 +180,7 @@ fun GameOverScreen(gameState: GameState, onRestart: () -> Unit, onMenuClick: () 
                 {
 
                     Text(
-                        text = "High Score:\n${gameState.score}",   //@TODO{get high score}
+                        text = "High Score:\n${getHighScore()}",
                         textAlign = TextAlign.Center,
                         lineHeight = 25.sp,
                         fontFamily = ComfortaaFamily,
