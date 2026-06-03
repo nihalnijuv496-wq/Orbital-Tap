@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
@@ -138,18 +139,25 @@ fun GameOverScreen(gameState: GameState, onRestart: () -> Unit, onMenuClick: () 
                 {
                     Text(
                         text = "Current Score:\n${gameState.score}",
-                        textAlign = TextAlign.Center,
-                        lineHeight = 25.sp,
-                        fontFamily = ComfortaaFamily,
-                        fontSize = 15.sp,
-                        fontWeight = FontWeight.Light,
-                        color = Color(174,226,255),
+                        maxLines = 2,
+                        softWrap = false,
+                        autoSize = TextAutoSize.StepBased(
+                            minFontSize = 12.sp,
+                            maxFontSize = 16.sp,
+                            stepSize = 1.sp
+                        ),
                         style = TextStyle(
                             shadow = Shadow(
                                 color = Color(174, 226, 255),
                                 offset = Offset(x = 0f, y = 0f),
                                 blurRadius = 8f
-                            )
+                            ),
+                            textAlign = TextAlign.Center,
+                            lineHeight = 25.sp,
+                            fontFamily = ComfortaaFamily,
+                            fontSize = 15.sp,
+                            fontWeight = FontWeight.Light,
+                            color = Color(174,226,255)
                         )
                     )
                 }
@@ -183,18 +191,25 @@ fun GameOverScreen(gameState: GameState, onRestart: () -> Unit, onMenuClick: () 
 
                     Text(
                         text = "High Score:\n${HighScoreStorage.getHighScore()}",
-                        textAlign = TextAlign.Center,
-                        lineHeight = 25.sp,
-                        fontFamily = ComfortaaFamily,
-                        fontSize = 15.sp,
-                        fontWeight = FontWeight.Light,
-                        color = Color(174,226,255),
+                        maxLines = 2,
+                        softWrap = false,
+                        autoSize = TextAutoSize.StepBased(
+                            minFontSize = 12.sp,
+                            maxFontSize = 16.sp,
+                            stepSize = 1.sp
+                        ),
                         style = TextStyle(
                             shadow = Shadow(
                                 color = Color(174, 226, 255),
                                 offset = Offset(x = 0f, y = 0f),
                                 blurRadius = 8f
-                            )
+                            ),
+                            textAlign = TextAlign.Center,
+                            lineHeight = 25.sp,
+                            fontFamily = ComfortaaFamily,
+                            fontSize = 15.sp,
+                            fontWeight = FontWeight.Light,
+                            color = Color(174,226,255)
                         )
                     )
                 }
@@ -233,6 +248,13 @@ fun GameOverScreen(gameState: GameState, onRestart: () -> Unit, onMenuClick: () 
                 {
                     Text(
                         text = "Exit",
+                        maxLines = 1,
+                        softWrap = false,
+                        autoSize = TextAutoSize.StepBased(
+                            minFontSize = 10.sp,
+                            maxFontSize = 17.sp,
+                            stepSize = 1.sp
+                        ),
                         style = TextStyle(
                             fontFamily = ComfortaaFamily,
                             fontSize = 17.sp,
@@ -273,6 +295,13 @@ fun GameOverScreen(gameState: GameState, onRestart: () -> Unit, onMenuClick: () 
                 {
                     Text(
                         text = "Restart",
+                        maxLines = 1,
+                        softWrap = false,
+                        autoSize = TextAutoSize.StepBased(
+                            minFontSize = 10.sp,
+                            maxFontSize = 17.sp,
+                            stepSize = 1.sp
+                        ),
                         style = TextStyle(
                             fontFamily = ComfortaaFamily,
                             fontSize = 17.sp,
@@ -316,6 +345,13 @@ fun GameOverScreen(gameState: GameState, onRestart: () -> Unit, onMenuClick: () 
                 {
                     Text(
                         text = "Reset",
+                        maxLines = 1,
+                        softWrap = false,
+                        autoSize = TextAutoSize.StepBased(
+                            minFontSize = 10.sp,
+                            maxFontSize = 17.sp,
+                            stepSize = 1.sp
+                        ),
                         style = TextStyle(
                             fontFamily = ComfortaaFamily,
                             fontSize = 17.sp,
