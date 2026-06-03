@@ -3,7 +3,7 @@ package org.nihal.orbitaltap.Utils
 import com.russhwolf.settings.Settings
 
 
-object ScoreStorage
+object HighScoreStorage
 {
     private val settings: Settings = Settings()
 
@@ -15,5 +15,10 @@ object ScoreStorage
 
     fun getHighScore(): Int {
         return settings.getInt("HighScore", 0)
+    }
+
+    fun resetHighScore()
+    {
+        settings.putInt("HighScore", 0)
     }
 }

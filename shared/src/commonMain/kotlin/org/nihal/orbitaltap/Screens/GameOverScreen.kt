@@ -40,13 +40,13 @@ import orbitaltap.shared.generated.resources.Comfortaa_Medium
 import orbitaltap.shared.generated.resources.Res
 import org.jetbrains.compose.resources.Font
 import org.nihal.orbitaltap.States.GameState
-import org.nihal.orbitaltap.Utils.ScoreStorage
+import org.nihal.orbitaltap.Utils.HighScoreStorage
 import androidx.compose.ui.graphics.shadow.Shadow as BoxShadow
 
 @Composable
 fun GameOverScreen(gameState: GameState, onRestart: () -> Unit, onMenuClick: () -> Unit) {
 
-    ScoreStorage.setHighScore(gameState.score)
+    HighScoreStorage.setHighScore(gameState.score)
 
     //@TODO{ Should put the family in a single folder }
     val ComfortaaFamily = FontFamily(
@@ -182,7 +182,7 @@ fun GameOverScreen(gameState: GameState, onRestart: () -> Unit, onMenuClick: () 
                 {
 
                     Text(
-                        text = "High Score:\n${ScoreStorage.getHighScore()}",
+                        text = "High Score:\n${HighScoreStorage.getHighScore()}",
                         textAlign = TextAlign.Center,
                         lineHeight = 25.sp,
                         fontFamily = ComfortaaFamily,
@@ -286,7 +286,51 @@ fun GameOverScreen(gameState: GameState, onRestart: () -> Unit, onMenuClick: () 
                         )
                     )
                 }
+
+                Spacer(modifier = Modifier.width(10.dp))
+
+                Button(
+                    onClick = {
+                        HighScoreStorage.resetHighScore()
+                        onMenuClick()
+                        },
+                    modifier = Modifier
+                        .weight(1f)
+                        .dropShadow(
+                            shape = RectangleShape,
+                            shadow = BoxShadow(
+                                color = Color(174, 226, 255).copy(0.4f),
+                                offset = DpOffset.Zero,
+                                radius = 10.dp,
+                                spread = 0.dp,
+                            )
+                        ),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(3, 10, 22),
+                        contentColor = Color.White
+                    ),
+                    border = BorderStroke(width = 2.dp, color = Color(174, 226, 255)),
+                    shape = RectangleShape
+
+                )
+                {
+                    Text(
+                        text = "Reset",
+                        style = TextStyle(
+                            fontFamily = ComfortaaFamily,
+                            fontSize = 17.sp,
+                            fontWeight = FontWeight.Light,
+                            color = Color(174,226,255),
+                            shadow = Shadow(
+                                color = Color(174, 226, 255),
+                                offset = Offset(x = 0f, y = 0f),
+                                blurRadius = 8f
+                            )
+                        )
+                    )
+                }
             }
+
         }
     }
 }
