@@ -1,4 +1,4 @@
-package org.nihal.orbitaltap
+package org.nihal.orbitaltap.Screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -39,12 +39,14 @@ import orbitaltap.shared.generated.resources.Comfortaa_Light
 import orbitaltap.shared.generated.resources.Comfortaa_Medium
 import orbitaltap.shared.generated.resources.Res
 import org.jetbrains.compose.resources.Font
+import org.nihal.orbitaltap.States.GameState
+import org.nihal.orbitaltap.Utils.ScoreStorage
 import androidx.compose.ui.graphics.shadow.Shadow as BoxShadow
 
 @Composable
 fun GameOverScreen(gameState: GameState, onRestart: () -> Unit, onMenuClick: () -> Unit) {
 
-    setHighScore(gameState.score)
+    ScoreStorage.setHighScore(gameState.score)
 
     //@TODO{ Should put the family in a single folder }
     val ComfortaaFamily = FontFamily(
@@ -180,7 +182,7 @@ fun GameOverScreen(gameState: GameState, onRestart: () -> Unit, onMenuClick: () 
                 {
 
                     Text(
-                        text = "High Score:\n${getHighScore()}",
+                        text = "High Score:\n${ScoreStorage.getHighScore()}",
                         textAlign = TextAlign.Center,
                         lineHeight = 25.sp,
                         fontFamily = ComfortaaFamily,

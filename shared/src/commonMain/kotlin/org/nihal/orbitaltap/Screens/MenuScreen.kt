@@ -1,4 +1,4 @@
-package org.nihal.orbitaltap
+package org.nihal.orbitaltap.Screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement

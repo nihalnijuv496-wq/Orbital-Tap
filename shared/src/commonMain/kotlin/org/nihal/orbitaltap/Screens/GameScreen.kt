@@ -1,4 +1,4 @@
-package org.nihal.orbitaltap
+package org.nihal.orbitaltap.Screens
 
 /*import androidx.compose.ui.draw.shadow as TextShadow*/
 import androidx.compose.foundation.background
@@ -36,6 +36,8 @@ import orbitaltap.shared.generated.resources.Comfortaa_Light
 import orbitaltap.shared.generated.resources.Comfortaa_Medium
 import orbitaltap.shared.generated.resources.Res
 import org.jetbrains.compose.resources.Font
+import org.nihal.orbitaltap.States.GameState
+import org.nihal.orbitaltap.Utils.StarMapRenderer
 import org.nihal.orbitaltap.Utils.Timer.StartTimer
 import androidx.compose.ui.graphics.shadow.Shadow as BoxShadow
 

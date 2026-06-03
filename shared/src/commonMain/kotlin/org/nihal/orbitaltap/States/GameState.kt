@@ -1,9 +1,11 @@
-package org.nihal.orbitaltap
+package org.nihal.orbitaltap.States
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.geometry.Offset
+import org.nihal.orbitaltap.Data.Constellation
+import org.nihal.orbitaltap.Data.constellations
 import org.nihal.orbitaltap.Utils.Timer.Timer
 import kotlin.math.sqrt
 

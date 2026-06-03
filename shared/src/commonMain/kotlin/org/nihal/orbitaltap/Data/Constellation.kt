@@ -1,6 +1,5 @@
-package org.nihal.orbitaltap
+package org.nihal.orbitaltap.Data
 
-import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 
 data class Star(

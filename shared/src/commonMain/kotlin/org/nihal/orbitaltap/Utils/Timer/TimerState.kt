@@ -3,7 +3,7 @@ package org.nihal.orbitaltap.Utils.Timer
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import kotlinx.coroutines.delay
-import org.nihal.orbitaltap.GameState
+import org.nihal.orbitaltap.States.GameState
 import kotlin.time.Clock
 
 @Composable

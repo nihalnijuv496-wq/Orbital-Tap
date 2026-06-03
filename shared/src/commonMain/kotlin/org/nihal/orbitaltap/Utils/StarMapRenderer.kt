@@ -1,4 +1,4 @@
-package org.nihal.orbitaltap
+package org.nihal.orbitaltap.Utils
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
@@ -23,6 +23,8 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
+import org.nihal.orbitaltap.States.GameState
+import org.nihal.orbitaltap.Data.constellations
 
 data class BackgroundStar(
     val position: Offset,

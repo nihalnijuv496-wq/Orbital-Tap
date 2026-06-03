@@ -7,6 +7,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
+import org.nihal.orbitaltap.Screens.GameOverScreen
+import org.nihal.orbitaltap.Screens.GameScreen
+import org.nihal.orbitaltap.Screens.MenuScreen
+import org.nihal.orbitaltap.States.GameState
 
 @Composable
 @Preview
@@ -21,7 +25,8 @@ fun App()
             "menu" -> MenuScreen(
                 onStartGame = {
                     screen = "game"
-                    gameState.startGame() },
+                    gameState.startGame()
+                },
                 onExit = {
                     gameState.resetAll()
                 }
