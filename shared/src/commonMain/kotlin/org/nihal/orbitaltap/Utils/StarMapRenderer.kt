@@ -2,29 +2,23 @@ package org.nihal.orbitaltap.Utils
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.dropShadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
-import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
-import org.nihal.orbitaltap.States.GameState
 import org.nihal.orbitaltap.Data.constellations
+import org.nihal.orbitaltap.States.GameState
+import org.nihal.orbitaltap.Theme.GlowBox
 
 data class BackgroundStar(
     val position: Offset,
@@ -66,90 +60,82 @@ fun StarMapRenderer(gameState: GameState)
         }
     }
 
-    Box(
+    GlowBox(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(fraction = 0.70f)
-            .border(width = 2.dp, color = Color(174,226,255), shape = RoundedCornerShape(10.dp))
-            .dropShadow(
-                shape = RoundedCornerShape(10.dp),
-                shadow = Shadow(
-                    color = Color(174, 226, 255).copy(0.4f),
-                    offset = DpOffset(0.dp, 0.dp),
-                    radius = 10.dp,
-                    spread = 2.dp,
-                )
-            )
-            .clip(RoundedCornerShape(10.dp))
-    )
-    {
-        Canvas(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(color = Color(3, 10, 22))
-                .onGloballyPositioned{
-                    coordinates -> gameState.updateCanvasSize(
+            .fillMaxHeight(fraction = 0.70f),
+        content = {
+            Canvas(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(color = Color(3, 10, 22))
+                    .onGloballyPositioned{
+                            coordinates -> gameState.updateCanvasSize(
                         coordinates.size.width.toFloat(), coordinates.size.height.toFloat()
                     )
-                }
-                .pointerInput(Unit){
-                    detectDragGestures(
-                        onDrag =  {_, dragAmount ->
-                            gameState.onDrag(dragAmount, Pair(size.width, size.height))
-                        }
-                    )
-                }
-                .pointerInput(Unit){
-                    detectTapGestures (
-                        onTap = {offset ->
-                            gameState.checkClick(offset.x, offset.y)
-                        }
-                    )
-                }
-        ) {
+                    }
+                    .pointerInput(Unit){
+                        detectDragGestures(
+                            onDrag =  {_, dragAmount ->
+                                gameState.onDrag(dragAmount, Pair(size.width, size.height))
+                            }
+                        )
+                    }
+                    .pointerInput(Unit){
+                        detectTapGestures (
+                            onTap = {offset ->
+                                gameState.checkClick(offset.x, offset.y)
+                            }
+                        )
+                    }
+            ) {
 
-            for(constellation in constellations)
-            {
-                val starPositionsOnMap = constellation.absoluteStarCoordinates()
-                val starPositionsOnScreen = starPositionsOnMap.map {
-                    Offset(
-                        (it.x - gameState.mapOffset.x),
-                        (it.y - gameState.mapOffset.y)
-                    )
-                }
-                for(position in starPositionsOnScreen)
+                for(constellation in constellations)
                 {
-                    drawStar(Color.White, 5.0f, position)
-                }
-                for (line in constellation.lines)
-                {
-                    val start = starPositionsOnScreen[line.first]
-                    val end = starPositionsOnScreen[line.second]
-                    drawLine(
-                        color = Color.White,
-                        start = start,
-                        end = end
-                    )
+                    val starPositionsOnMap = constellation.absoluteStarCoordinates()
+                    val starPositionsOnScreen = starPositionsOnMap.map {
+                        Offset(
+                            (it.x - gameState.mapOffset.x),
+                            (it.y - gameState.mapOffset.y)
+                        )
+                    }
+                    for(position in starPositionsOnScreen)
+                    {
+                        drawStar(Color.White, 5.0f, position)
+                    }
+                    for (line in constellation.lines)
+                    {
+                        val start = starPositionsOnScreen[line.first]
+                        val end = starPositionsOnScreen[line.second]
+                        drawLine(
+                            color = Color.White,
+                            start = start,
+                            end = end
+                        )
+                    }
+
                 }
 
-            }
-
-            for(backgroundStar in backgroundStars)
-            {
-                val screenPosition = backgroundStar.position - gameState.mapOffset
-                val screenX = screenPosition.x
-                val screenY = screenPosition.y
-                if(screenX in 0f..size.width && screenY in 0f..size.height)
+                for(backgroundStar in backgroundStars)
                 {
-                    drawStar(
-                        color = backgroundStar.color,
-                        radius = backgroundStar.radius,
-                        center = screenPosition
-                    )
+                    val screenPosition = backgroundStar.position - gameState.mapOffset
+                    val screenX = screenPosition.x
+                    val screenY = screenPosition.y
+                    if(screenX in 0f..size.width && screenY in 0f..size.height)
+                    {
+                        drawStar(
+                            color = backgroundStar.color,
+                            radius = backgroundStar.radius,
+                            center = screenPosition
+                        )
+                    }
                 }
             }
         }
-    }
+    )
+
+
+
 }
 
 
