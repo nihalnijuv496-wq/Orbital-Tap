@@ -4,6 +4,7 @@ A Kotlin Multiplatform star-map quiz game. You're given a constellation name, an
 
 Built with Compose Multiplatform for Android and iOS, with all UI and game logic in shared code.
 
+<img src = "docs/demo_SS.jpeg" alt = "demo img" width = "50%">
 ## How to play
 
 1. Press **Start** on the menu.
